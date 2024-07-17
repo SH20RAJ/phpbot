@@ -1,0 +1,17 @@
+{
+    "name": "shaswatraj/phpbot",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Shaswatraj\\Phpbot\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sh20raj",
+            "email": "shaswatraj3@gmail.com"
+        }
+    ],
+    "require": {}
+}

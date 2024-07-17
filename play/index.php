@@ -3,6 +3,15 @@
 // Replace with your bot token
 $botToken = '7337693933:AAGKjpcWREFw5u4U_efy0UkRbq692QxC87k';
 
+
+// Include the PhpGram library
+
+include '../phpgram.php';
+
+
+$bot = new PhpGram($botToken);
+
+
 // URL of the Telegram API for sending messages
 $apiURL = 'https://api.telegram.org/bot' . $botToken . '/sendMessage';
 
@@ -12,6 +21,7 @@ $chatId = $update['message']['chat']['id'];
 $messageId = $update['message']['message_id'];
 $command = trim($update['message']['text']);
 
+$bot->sendMessage($chatId, 'Hello World!');
 // Command to handle
 if ($command == '/flipcoin') {
     // Generate random number (0 or 1)

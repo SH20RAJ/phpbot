@@ -1,14 +1,10 @@
 <?php
 
+
+require_once 'phpgram.php';
+
 // Replace with your bot token
 $botToken = '7337693933:AAGKjpcWREFw5u4U_efy0UkRbq692QxC87k';
-
-
-// Include the PhpGram library
-
-include '../phpgram.php';
-
-
 $bot = new PhpGram($botToken);
 
 

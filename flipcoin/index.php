@@ -334,7 +334,7 @@ if ($command == '/flipcoin') {
     $random = mt_rand(1, 6);
 
     // // Determine the result
-    $result = "https://cdn.statically.io/og/"+random+".png";
+    $result = "https://cdn.statically.io/og/"+$random+".png";
 
     // // Send the result
     $bot->sendPhoto($chatId, $result , 'The dice rolled: ' . $random);

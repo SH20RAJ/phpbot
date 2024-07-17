@@ -317,7 +317,7 @@ $chatId = $update['message']['chat']['id'];
 $messageId = $update['message']['message_id'];
 $command = trim($update['message']['text']);
 
-// $bot->sendMessage($chatId, 'Hello World!');
+$bot->sendMessage($chatId, 'Hello World!');
 // Command to handle
 if ($command == '/flipcoin') {
     // Generate random number (0 or 1)

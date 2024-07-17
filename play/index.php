@@ -318,6 +318,7 @@ $messageId = $update['message']['message_id'];
 $command = trim($update['message']['text']);
 
 $bot->sendMessage($chatId, 'Hello World!');
+$bot->sendPhoto($chatId, 'https://bit.ly/bbsampleimage', 'This is a photo');
 // Command to handle
 if ($command == '/flipcoin') {
     // Generate random number (0 or 1)

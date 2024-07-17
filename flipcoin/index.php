@@ -316,16 +316,13 @@ $update = json_decode(file_get_contents('php://input'), true);
 $chatId = $update['message']['chat']['id'];
 $messageId = $update['message']['message_id'];
 $command = trim($update['message']['text']);
-
-
-$result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
-
 // Command to handle
 if ($command == '/flipcoin') {
     // Generate random number (0 or 1)
     $random = mt_rand(0, 1);
 
     // Determine the result
+    $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
 
     // Send the result
     $bot->sendPhoto($chatId, $result , 'The coin flipped! /flipcoin again? 🪙');
@@ -336,13 +333,13 @@ if ($command == '/flipcoin') {
     $random = mt_rand(1, 6);
 
     // // Determine the result
-    // $result = "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih";
+    $result = "https://cdn.statically.io/og/"+random+".png";
 
     // // Send the result
-    // $bot->sendPhoto($chatId, $result);
+    $bot->sendPhoto($chatId, $result , 'The dice rolled: ' . $random);
 
     // Send the result
-    $bot->sendMessage($chatId, 'The dice rolled: ' . $random);
+    // $bot->sendMessage($chatId, 'The dice rolled: ' . $random);
 } elseif ($command == '/start') {
     // Send a welcome message
     $bot->sendMessage($chatId, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice');

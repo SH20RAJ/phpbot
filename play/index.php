@@ -333,19 +333,19 @@ if ($command == '/flipcoin') {
     $random = mt_rand(1, 6);
 
     // // Determine the result
-    // $result = "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih";
+    $result = "https://cdn.statically.io/og/"+random+".png";
 
     // // Send the result
-    // $bot->sendPhoto($chatId, $result);
+    $bot->sendPhoto($chatId, $result , 'The dice rolled: ' . $random);
 
     // Send the result
-    $bot->sendMessage($chatId, 'The dice rolled: ' . $random);
+    // $bot->sendMessage($chatId, 'The dice rolled: ' . $random);
 } elseif ($command == '/start') {
     // Send a welcome message
     $bot->sendMessage($chatId, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice');
 
     // Send a photo
-    $bot->sendPhoto($chatId, 'https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih');
+    $bot->sendPhoto($chatId, $result, 'A coin flip! 🪙');
 
 } else {
 

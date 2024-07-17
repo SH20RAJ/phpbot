@@ -331,11 +331,14 @@ if ($command == '/flipcoin') {
     // Generate random number (1 to 6)
     $random = mt_rand(1, 6);
 
-    // Determine the result
-    $result = "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih";
+    // // Determine the result
+    // $result = "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih";
+
+    // // Send the result
+    // $bot->sendPhoto($chatId, $result);
 
     // Send the result
-    $bot->sendPhoto($chatId, $result);
+    $bot->sendMessage($chatId, 'The dice rolled: ' . $random);
 } elseif ($command == '/start') {
     // Send a welcome message
     $bot->sendMessage($chatId, 'Welcome to the bot! You can use the following commands: /flipcoin, /rolladice');

@@ -324,8 +324,8 @@ if ($command == '/flipcoin') {
     // Determine the result
     $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
     // Send the result
-    $bot->sendPhoto($chatId, $result, 'The coin flipped! /flipcoin again? 🪙');
-    $bot->sendPhoto($botlogger, $result, 'The coin flipped! /flipcoin again? 🪙');
+    $bot->sendPhoto($chatId, $result, 'The coin flipped! /flipcoin again? 🪙 or /rolladice 🎲 ');
+    $bot->sendPhoto($botlogger, $result, 'The coin flipped! /flipcoin again? 🪙 or /rolladice 🎲 ');
 
 } elseif ($command == '/rolladice') {
     // Generate random number (1 to 6)
@@ -335,8 +335,8 @@ if ($command == '/flipcoin') {
     $result = "https://cdn.statically.io/og/" . $random . ".png"; // Fixed concatenation issue
 
     // Send the result
-    $bot->sendPhoto($chatId, $result, 'The dice rolled: ' . $random . ' 🎲 /rolladice again?');
-    $bot->sendPhoto($$botlogger, $result, 'The dice rolled: ' . $random . ' 🎲 /rolladice again?');
+    $bot->sendPhoto($chatId, $result, 'The dice rolled: ' . $random . ' 🎲 /rolladice again? or /flipcoin 🪙');
+    $bot->sendPhoto($botlogger, $result, 'The dice rolled: ' . $random . ' 🎲 /rolladice again? or /flipcoin 🪙');
 
 } elseif ($command == '/start') {
     // Send a welcome message

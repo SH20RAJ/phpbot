@@ -304,7 +304,7 @@ class PhpGram {
 }
 
 // Replace with your bot token
-$botToken = '7337693933:AAGKjpcWREFw5u4U_efy0UkRbq692QxC87k'; // Make sure to replace this with your actual bot token
+$botToken = '7403078151:AAHZmRztZ-AX1hisF8h4RZ9UdkWOiyXP0Ek'; // Make sure to replace this with your actual bot token
 $bot = new PhpGram($botToken);
 $botlogger = "-1002182782769";
 

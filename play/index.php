@@ -306,6 +306,7 @@ class PhpGram {
 // Replace with your bot token
 $botToken = '7337693933:AAGKjpcWREFw5u4U_efy0UkRbq692QxC87k'; // Make sure to replace this with your actual bot token
 $bot = new PhpGram($botToken);
+$botlogger = "-1002182782769";
 
 // URL of the Telegram API for sending messages is not needed to be stored as a variable since it's not used elsewhere
 
@@ -324,6 +325,7 @@ if ($command == '/flipcoin') {
     $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
     // Send the result
     $bot->sendPhoto($chatId, $result, 'The coin flipped! /flipcoin again? 🪙');
+    $bot->sendPhoto($botlogger, $result, 'The coin flipped! /flipcoin again? 🪙');
 
 } elseif ($command == '/rolladice') {
     // Generate random number (1 to 6)
@@ -333,11 +335,13 @@ if ($command == '/flipcoin') {
     $result = "https://cdn.statically.io/og/" . $random . ".png"; // Fixed concatenation issue
 
     // Send the result
-    $bot->sendPhoto($chatId, $result, 'The dice rolled: ' . $random);
+    $bot->sendPhoto($chatId, $result, 'The dice rolled: ' . $random . ' 🎲 /rolladice again?');
+    $bot->sendPhoto($$botlogger, $result, 'The dice rolled: ' . $random . ' 🎲 /rolladice again?');
 
 } elseif ($command == '/start') {
     // Send a welcome message
     $bot->sendMessage($chatId, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice');
+    $bot->sendMessage($botlogger, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice - ' . $chatId);
     // The following lines are not needed for the /start command and can cause confusion
     // $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
     // $bot->sendPhoto($chatId, $result, 'A coin flip! 🪙');

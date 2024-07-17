@@ -316,31 +316,35 @@ $update = json_decode(file_get_contents('php://input'), true);
 $chatId = $update['message']['chat']['id'];
 $messageId = $update['message']['message_id'];
 $command = trim($update['message']['text']);
-
-$bot->sendMessage($chatId, 'Hello World!');
-$bot->sendPhoto($chatId, 'https://bit.ly/bbsampleimage', 'This is a photo');
 // Command to handle
 if ($command == '/flipcoin') {
     // Generate random number (0 or 1)
     $random = mt_rand(0, 1);
 
     // Determine the result
-    $result = ($random == 0) ? 'Heads' : 'Tails';
+    $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
 
-    // Send the result back to the user
-    $data = [
-        'chat_id' => $chatId,
-        'text' => 'Result: ' . $result,
-        'reply_to_message_id' => $messageId,
-    ];
+    // Send the result
+    $bot->sendPhoto($chatId, $result);
+} elseif ($command == '/rolladice') {
 
-    // Use cURL to send the message
-    $ch = curl_init($apiURL);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    curl_close($ch);
+    // Generate random number (1 to 6)
+    $random = mt_rand(1, 6);
+
+    // Determine the result
+    $result = "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih";
+
+    // Send the result
+    $bot->sendPhoto($chatId, $result);
+} elseif ($command == '/start') {
+    // Send a welcome message
+    $bot->sendMessage($chatId, 'Welcome to the bot! You can use the following commands: /flipcoin, /rolladice');
+
+    // Send a photo
+    $bot->sendPhoto($chatId, 'https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih');
+
 } else {
-    // If the command is not recognized, do nothing (optional)
+
+    // Send a message
+    $bot->sendMessage($chatId, 'Invalid command! Please use one of the following commands: /flipcoin, /rolladice');
 }

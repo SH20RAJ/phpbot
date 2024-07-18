@@ -20,28 +20,7 @@ $chatId = $update['message']['chat']['id'];
 $command = trim($update['message']['text']);
 
 // Command to handle
-if ($command == '/flipcoin') {
-    // Generate random number (0 or 1)
-    $random = mt_rand(0, 1);
-
-    // Determine the result
-    $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
-    // Send the result
-    $bot->sendPhoto($chatId, $result, 'The coin flipped! /flipcoin again? 🪙 or /rolladice 🎲 ');
-    $bot->sendPhoto($botlogger, $result, 'The coin flipped! /flipcoin again? 🪙 or /rolladice 🎲 ');
-
-} elseif ($command == '/rolladice') {
-    // Generate random number (1 to 6)
-    $random = mt_rand(1, 6);
-
-    // Determine the result
-    $result = "https://cdn.statically.io/og/" . $random . ".png"; // Fixed concatenation issue
-
-    // Send the result
-    $bot->sendPhoto($chatId, $result, 'The dice rolled: ' . $random . ' 🎲 /rolladice again? or /flipcoin 🪙');
-    $bot->sendPhoto($botlogger, $result, 'The dice rolled: ' . $random . ' 🎲 /rolladice again? or /flipcoin 🪙');
-
-} elseif ($command == '/start') {
+if ($command == '/start') {
     // Send a welcome message
     $bot->sendMessage($chatId, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice');
     $bot->sendMessage($botlogger, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice - ' . $chatId);
@@ -56,11 +35,9 @@ elseif(strpos($command, '/dns') === 0) {
     $url = 'https://bgp.he.net/dns/'.$url;
     $html = fetch_html_content($url);
     $innerHtml = extract_inner_html_by_id($html, 'dns' );
-
     $bot->sendMessage($chatId, $bot->sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
     
 }
-
 
 
 

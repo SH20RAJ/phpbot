@@ -310,6 +310,9 @@ class PhpGram {
         // Convert special characters to HTML entities
         $html = htmlspecialchars($html);
     
+        // Remove leading and trailing whitespace
+        $html = trim($html);
+    
         return $html;
     }
 

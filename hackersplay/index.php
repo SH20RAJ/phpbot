@@ -1,63 +1,63 @@
 <?php
-require __DIR__ . '/../phpgram.php'; // Adjust the path to your Telegram bot library
-require __DIR__ . '/dns.php'; // Adjust the path as needed
+
+
+require __DIR__ . '/../phpgram.php';
+require __DIR__ . '/dns.php';
 
 use PhpGram\PhpGram;
 
 // Replace with your bot token
-$botToken = '7227210007:AAGYF1Rvk4cJZNtshC-2TYbn6I7TiAstb-c'; // Replace with your actual bot token
+$botToken = '7227210007:AAGYF1Rvk4cJZNtshC-2TYbn6I7TiAstb-c'; // Make sure to replace this with your actual bot token
 $bot = new PhpGram($botToken);
+$botlogger = "-1002182782769";
+
+// URL of the Telegram API for sending messages is not needed to be stored as a variable since it's not used elsewhere
 
 // Get the incoming message and chat ID
 $update = json_decode(file_get_contents('php://input'), true);
 $chatId = $update['message']['chat']['id'];
+// $messageId is not used in this script, so it can be removed to clean up the code
 $command = trim($update['message']['text']);
 
-// Function to fetch HTML content
-function fetch_html_content($url) {
-    return file_get_contents($url); // Replace with your own implementation to fetch HTML content
-}
-
-// Function to sanitize HTML for Telegram
-function sanitize_html_for_telegram($html) {
-    // Define allowed tags and attributes
-    $allowed_tags = ['b', 'i', 'a', 'code', 'pre', 'strong', 'em', 'u', 'br'];
-    $allowed_attributes = ['href', 'title'];
-
-    // Remove unsupported tags and attributes
-    $html = strip_tags($html, '<' . implode('><', $allowed_tags) . '>');
-    $html = preg_replace('/<a\s+(?:[^>]+\s+)?href="([^"]+)"(?:[^>]+\s+)?>(.*?)<\/a>/i', '<a href="$1">$2</a>', $html); // Preserve href attribute
-
-    // Convert special characters to HTML entities
-    $html = htmlspecialchars($html);
-
-    // Remove leading and trailing whitespace
-    $html = trim($html);
-
-    return $html;
-}
-
-// Handle commands
-if ($command == '/start') {
+// Command to handle
+if  ($command == '/start') {
     // Send a welcome message
     $bot->sendMessage($chatId, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice');
-} elseif (strpos($command, '/dns') === 0) {
+    $bot->sendMessage($botlogger, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice - ' . $chatId);
+    // The following lines are not needed for the /start command and can cause confusion
+    // $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
+    // $bot->sendPhoto($chatId, $result, 'A coin flip! 🪙');
+
+} 
+
+elseif(strpos($command, '/dns') === 0) {
     $url = substr($command, 5);
-    $url = 'https://bgp.he.net/dns/' . $url;
-    
-    // Fetch HTML content
+    $url = 'https://bgp.he.net/dns/'.$url;
     $html = fetch_html_content($url);
-    
-    // Extract inner HTML by ID (you need to implement this function)
-    $innerHtml = extract_inner_html_by_id($html, 'dns');
+    $innerHtml = extract_inner_html_by_id($html, 'dns' );
+    $bot->sendMessage($chatId, $bot->sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
+}
 
-    // Sanitize HTML for Telegram
-    $sanitizedHtml = sanitize_html_for_telegram($innerHtml);
+elseif(strpos($command, '/ipinfo') === 0) {
+    $url = substr($command, 8);
+    $url = 'https://bgp.he.net/dns/'.$url;
+    $html = fetch_html_content($url);
+    $innerHtml = extract_inner_html_by_id($html, 'ipinfo' );
+    $bot->sendMessage($chatId, $bot->sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
+}
 
-    // Send sanitized HTML to Telegram
-    $bot->sendMessage($chatId, $sanitizedHtml, ['parse_mode' => 'HTML']);
-} else {
+elseif(strpos($command, '/whois') === 0) {
+    $url = substr($command, 7);
+    $url = 'https://bgp.he.net/dns/'.$url;
+    $html = fetch_html_content($url);
+    $innerHtml = extract_inner_html_by_id($html, 'whois' );
+    $bot->sendMessage($chatId, $bot->sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
+}
+
+
+
+
+else {
     // Send a message for invalid commands
     $bot->sendMessage($chatId, 'Invalid command! Please use one of the following commands: /flipcoin, /rolladice');
 }
-?>

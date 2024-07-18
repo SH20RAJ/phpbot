@@ -39,7 +39,14 @@ elseif(strpos($command, '/dns') === 0) {
     $url = 'https://bgp.he.net/dns/'.$url;
     $html = fetch_html_content($url);
     $innerHtml = extract_inner_html_by_id($html, 'dns' );
-    $bot->sendMessage($chatId, $bot->sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
+    $innerHtml = $bot->sanitize_html_for_telegram($innerHtml);
+
+    $doubleQuotedText = str_replace('`', '"', $innerHtml);
+
+// Convert \n to actual new lines
+$finalText = str_replace('\n', "\n", $doubleQuotedText);
+
+    $bot->sendMessage($chatId,$finalText , ['parse_mode' => 'HTML']);
 }
 
 elseif(strpos($command, '/ipinfo') === 0) {

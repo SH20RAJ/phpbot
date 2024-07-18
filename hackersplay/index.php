@@ -2,6 +2,7 @@
 
 
 require __DIR__ . '/../phpgram.php';
+require __DIR__ . '/dns.php';
 
 use PhpGram\PhpGram;
 
@@ -48,7 +49,20 @@ if ($command == '/flipcoin') {
     // $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
     // $bot->sendPhoto($chatId, $result, 'A coin flip! 🪙');
 
-} else {
+} 
+
+elseif(strpos($command, '/dns') === 0) {
+    $url = substr($command, 5);
+    $url = 'https://bgp.he.net/dns/'.$url;
+    $html = fetch_html_content($url);
+    $innerHtml = extract_inner_html_by_id($html, 'dns');
+    $bot->sendMessage($chatId, $innerHtml);
+}
+
+
+
+
+else {
     // Send a message for invalid commands
     $bot->sendMessage($chatId, 'Invalid command! Please use one of the following commands: /flipcoin, /rolladice');
 }

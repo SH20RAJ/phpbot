@@ -56,8 +56,10 @@ elseif(strpos($command, '/dns') === 0) {
     $url = 'https://bgp.he.net/dns/'.$url;
     $html = fetch_html_content($url);
     $innerHtml = extract_inner_html_by_id($html, 'dns' );
-    $bot->sendMessage($chatId, sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
-    $bot->sendMessage($botlogger, $innerHtml, ['parse_mode' => 'HTML']);
+    $innerHtml = "<b> DNS Lookup for: </b>";
+    $bot->sendMessage($chatId, $innerHtml, ['parse_mode' => 'HTML']);
+    // $bot->sendMessage($chatId, sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
+
 }
 
 

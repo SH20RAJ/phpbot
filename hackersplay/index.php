@@ -56,7 +56,61 @@ elseif(strpos($command, '/dns') === 0) {
     $url = 'https://bgp.he.net/dns/'.$url;
     $html = fetch_html_content($url);
     $innerHtml = extract_inner_html_by_id($html, 'dns' );
-    $innerHtml = "<b> DNS Lookup for: </b>";
+    $innerHtml = `
+    Start of Authority
+  
+   
+    
+     mname:  ns1.dns-parking.com
+     rname:  dns.hostinger.com<br>
+     serial:  2024071801<br>
+     refresh: 10000
+     retry:  2400<br>
+     expire:  604800
+     minimum: 600
+    
+   
+  
+ 
+ 
+ 
+  Nameservers
+  
+   <a href="/dns/ns1.dns-parking.com" title="ns1.dns-parking.com">ns1.dns-parking.com</a>, <a href="/dns/ns2.dns-parking.com" title="ns2.dns-parking.com">ns2.dns-parking.com</a>
+  
+  
+ 
+ 
+  Mail Exchangers
+  
+   <a href="/dns/mx2.hostinger.com" title="mx2.hostinger.com">mx2.hostinger.com</a>(10)
+   
+ 
+ 
+ 
+  TXT Records
+  
+   
+    
+     v=spf1 include:_spf.mail.hostinger.com ~all<br>
+    
+    <br>
+   
+  
+ 
+ 
+ 
+  A Records
+  
+   <a href="/ip/216.239.36.21" title="216.239.36.21">216.239.36.21</a>, <a href="/ip/216.239.34.21" title="216.239.34.21">216.239.34.21</a>, <a href="/ip/216.239.32.21" title="216.239.32.21">216.239.32.21</a>, <a href="/ip/216.239.38.21" title="216.239.38.21">216.239.38.21</a>
+  
+ 
+
+ 
+  AAAA Records
+  
+   <a href="/ip/2A02:4780:2B:1610::CAB:4D71:2" title="2A02:4780:2B:1610::CAB:4D71:2">2A02:4780:2B:1610::CAB:4D71:2</a>
+    `;
     $bot->sendMessage($chatId, $innerHtml, ['parse_mode' => 'HTML']);
     // $bot->sendMessage($chatId, sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
 

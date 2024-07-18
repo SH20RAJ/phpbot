@@ -1,9 +1,12 @@
 <?php
-// URL of the file to be downloaded
-$fileUrl = 'https://aac.saavncdn.com/665/7790c3b9097592113008eaf1031d6e57_320.mp4';
+// Check if URL and name parameters are provided in the query string
+if (!isset($_GET['url']) || !isset($_GET['name'])) {
+    die('URL and name parameters are required.');
+}
 
-// Custom name for the downloaded file
-$downloadFileName = 'song-name.mp3';
+// Get the URL and name from the query string
+$fileUrl = $_GET['url'];
+$downloadFileName = $_GET['name'];
 
 // Fetch the file content from the URL
 $fileContent = file_get_contents($fileUrl);

@@ -57,15 +57,8 @@ elseif(strpos($command, '/dns') === 0) {
     $html = fetch_html_content($url);
     $innerHtml = extract_inner_html_by_id($html, 'dns' );
 
-    $bot->sendMessage($chatId, " <b> New </b> ", ['parse_mode' => 'HTML']);
-    $bot->sendMessage($chatId, $innerHtml, ['parse_mode' => 'HTML']);
-    $bot->sendMessage($chatId, " <b> New2 </b> ");
-    // $bot->sendMessage($chatId, sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
-
-
-
-
-
+    $bot->sendMessage($chatId, $bot->sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
+    
 }
 
 

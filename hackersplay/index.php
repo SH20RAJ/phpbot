@@ -56,9 +56,7 @@ elseif(strpos($command, '/dns') === 0) {
     $url = 'https://bgp.he.net/dns/'.$url;
     $html = fetch_html_content($url);
     $innerHtml = extract_inner_html_by_id($html, 'dns' );
-    $bot->sendMessage($chatId, $innerHtml , 
-    ['parse_mode' => 'HTML']
-);
+    $bot->sendMessage($chatId, $innerHtml, ['parse_mode' => 'HTML']);
 }
 
 

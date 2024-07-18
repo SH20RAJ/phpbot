@@ -298,6 +298,21 @@ class PhpGram {
         }
     }
 
+    public function sanitize_html_for_telegram($html) {
+        // Define allowed tags and attributes
+        $allowed_tags = ['b', 'i', 'a', 'code', 'pre', 'strong', 'em', 'u', 'br'];
+        $allowed_attributes = ['href', 'title'];
+    
+        // Remove unsupported tags and attributes
+        $html = strip_tags($html, '<' . implode('><', $allowed_tags) . '>');
+        $html = preg_replace('/<a\s+(?:[^>]+\s+)?href="([^"]+)"(?:[^>]+\s+)?>(.*?)<\/a>/i', '<a href="$1">$2</a>', $html); // Preserve href attribute
+    
+        // Convert special characters to HTML entities
+        $html = htmlspecialchars($html);
+    
+        return $html;
+    }
+
 
 
 }

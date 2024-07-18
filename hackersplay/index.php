@@ -22,8 +22,11 @@ $command = trim($update['message']['text']);
 // Command to handle
 if  ($command == '/start') {
     // Send a welcome message
-    $bot->sendMessage($chatId, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice');
-    $bot->sendMessage($botlogger, 'Welcome to the bot! ✨ You can use the following commands: /flipcoin, /rolladice - ' . $chatId);
+    $bot->sendMessage($chatId, `Welcome to the DNS Lookup Bot! You can use the following commands:
+    /dns [domain] - Get DNS information for a domain
+    /ipinfo [IP address] - Get information about an IP address
+    /whois [domain/IP address] - Get WHOIS information for a domain or IP address');
+    `);
     // The following lines are not needed for the /start command and can cause confusion
     // $result = ($random == 0) ? "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fj22gcmxu7la47n3rbnb4ih" : "https://imagecdn.app/v1/images/https%3A%2F%2Fpics.shade.cool%2Fapi%2Fimages%2Fdfvyolmbeynvtnluncmq";
     // $bot->sendPhoto($chatId, $result, 'A coin flip! 🪙');
@@ -53,7 +56,6 @@ elseif(strpos($command, '/whois') === 0) {
     $innerHtml = extract_inner_html_by_id($html, 'whois' );
     $bot->sendMessage($chatId, $bot->sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
 }
-
 
 
 

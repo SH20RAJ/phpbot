@@ -111,10 +111,20 @@ elseif(strpos($command, '/dns') === 0) {
   
    <a href="/ip/2A02:4780:2B:1610::CAB:4D71:2" title="2A02:4780:2B:1610::CAB:4D71:2">2A02:4780:2B:1610::CAB:4D71:2</a>
     `;
+
+
+    $bot->sendMessage($chatId, " <b> New </b> ", ['parse_mode' => 'HTML']);
     $bot->sendMessage($chatId, $innerHtml, ['parse_mode' => 'HTML']);
+    $bot->sendMessage($chatId, " <b> New2 </b> ", ['parse_mode' => 'HTML']);
     // $bot->sendMessage($chatId, sanitize_html_for_telegram($innerHtml), ['parse_mode' => 'HTML']);
 
+
+
+
+
 }
+
+
 
 
 

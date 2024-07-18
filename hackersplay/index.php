@@ -5,7 +5,7 @@ require __DIR__ . '/dns.php'; // Adjust the path as needed
 use PhpGram\PhpGram;
 
 // Replace with your bot token
-$botToken = 'YOUR_BOT_TOKEN'; // Replace with your actual bot token
+$botToken = '7227210007:AAGYF1Rvk4cJZNtshC-2TYbn6I7TiAstb-c'; // Replace with your actual bot token
 $bot = new PhpGram($botToken);
 
 // Get the incoming message and chat ID
